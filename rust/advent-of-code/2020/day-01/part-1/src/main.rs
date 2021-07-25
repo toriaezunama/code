@@ -18,9 +18,22 @@ fn main() -> io::Result<()> {
     }
     v.sort();
 
-    let mut i: i32 = 0;
-    let mut j: usize = v.len();
+    let mut i: usize = 0;
+    let mut j: usize = v.len() - 1;
 
-    println!("{} {} {:#?}", i, j, v);
+    let target: i32 = 2020;
+    while i < j {
+        let sum = v[i] + v[j];
+        if sum == target {
+            break;
+        } else if sum > target {
+            j -= 1;
+        } else if sum < target {
+            i += 1;
+        }
+    }
+
+    println!("{} {} {:#?}", v[i], v[j], v[i] + v[j]);
+    println!("Result: {}", v[i] * v[j]);
     Ok(())
 }
